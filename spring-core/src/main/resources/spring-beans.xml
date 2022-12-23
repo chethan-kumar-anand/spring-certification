@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:component-scan base-package="spring.core.example"></context:component-scan>
+    
+    <!-- bean definitions here -->
+    <bean id="center" class="spring.core.example.Point">
+        <property name="x" value="2" />
+        <property name="y" value="3" />
+    </bean>
+
+    <!-- <bean id="a" class="spring.core.example.Point">
+        <property name="x" value="0" />
+        <property name="y" value="2" />
+    </bean>
+    <bean id="b" class="spring.core.example.Point">
+        <property name="x" value="2" />
+        <property name="y" value="4" />
+    </bean>
+    <bean id="c" class="spring.core.example.Point">
+        <property name="x" value="4" />
+        <property name="y" value="6" />
+    </bean> -->
+    
+    <!-- <bean id="shape" class="spring.core.example.Square">
+        <property name="length" value="5"></property>
+    </bean> -->
+
+    <!-- <bean id="triangle" class="spring.core.example.Triangle">
+        <property name="a" ref="a" />
+        <property name="b" ref="b" />
+        <property name="c" ref="c" />
+    </bean> -->
+</beans>
