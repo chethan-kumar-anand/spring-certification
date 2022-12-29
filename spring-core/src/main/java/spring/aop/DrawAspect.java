@@ -1,6 +1,5 @@
-package spring.core.aspect;
+package spring.aop;
 
-import org.aspectj.lang.annotation.AdviceName;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;

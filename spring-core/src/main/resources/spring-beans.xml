@@ -10,8 +10,8 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
-    <context:component-scan base-package="spring.core.di"></context:component-scan>
-    <context:component-scan base-package="spring.core.aspect"></context:component-scan>
+    <context:component-scan base-package="spring" />
+    
     <aop:aspectj-autoproxy/>
     
     <!-- bean definitions here -->
@@ -42,4 +42,19 @@
         <property name="b" ref="b" />
         <property name="c" ref="c" />
     </bean> -->
+
+    <!-- spring data -->
+    <!-- basic out of the box datasource -->
+    <bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+        <property name="url" value="jdbc:derby://localhost:1527/db;create=true" />
+    </bean>
+
+    <!-- datasource that supports connection pooling -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+        <property name="url" value="jdbc:derby://localhost:1527/db;create=true" />
+        <property name="initialSize" value="2" />
+        <!-- <property name="maxActive" value="5" /> -->
+    </bean>
 </beans>
