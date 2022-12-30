@@ -15,6 +15,7 @@ public class SpringDataDemo {
         CircleDao dao = context.getBean("spring-data-dao", CircleDao.class);
         
         Circle circle = dao.getCircle(1);
-        System.out.println(circle.getName());
+        System.out.println("Circle with id 1: " + circle.getName());
+        System.out.println("Circle count: " + dao.getCircleCount());
     }
 }

@@ -49,4 +49,10 @@ public class JdbcDaoImpl implements CircleDao {
 
         return circle;
     }
+
+    @Override
+    public Integer getCircleCount() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

@@ -7,22 +7,26 @@ import java.sql.ResultSet;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import spring.data.model.Circle;
 
 @Component("spring-data-dao")
 public class SpringDataDaoImpl implements CircleDao {
-
-    @Autowired
+    
     private DataSource dataSource;
+
+    private JdbcTemplate jdbcTemplate;
 
     public DataSource getDataSource() {
         return dataSource;
     }
 
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
@@ -44,6 +48,12 @@ public class SpringDataDaoImpl implements CircleDao {
         }
         
         return circle;
+    }
+
+    @Override
+    public Integer getCircleCount() {
+        String sql = "SELECT COUNT(*) FROM CIRCLE";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
     
 }
