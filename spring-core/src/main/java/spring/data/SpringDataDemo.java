@@ -17,5 +17,7 @@ public class SpringDataDemo {
         Circle circle = dao.getCircle(1);
         System.out.println("Circle with id 1: " + circle.getName());
         System.out.println("Circle count: " + dao.getCircleCount());
+        System.out.println("Circle name with id 1: " + dao.getCircleName(1));
+        System.out.println("All circles in table: " + dao.getAllCircles());
     }
 }

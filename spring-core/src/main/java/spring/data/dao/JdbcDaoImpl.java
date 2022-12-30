@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -52,6 +53,18 @@ public class JdbcDaoImpl implements CircleDao {
 
     @Override
     public Integer getCircleCount() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getCircleName(int id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Circle> getAllCircles() {
         // TODO Auto-generated method stub
         return null;
     }
