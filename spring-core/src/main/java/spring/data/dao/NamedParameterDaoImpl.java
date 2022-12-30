@@ -4,60 +4,38 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
 
 import spring.data.model.Circle;
 
-@Component("spring-data-dao")
-public class SpringDataDaoImpl implements CircleDao {
-    
-    private DataSource dataSource;
-
-    private JdbcTemplate jdbcTemplate;
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-    }
+public class NamedParameterDaoImpl extends NamedParameterJdbcDaoSupport implements CircleDao {
 
     @Override
     public Circle getCircle(int id) {
         String sql = "SELECT * FROM CIRCLE WHERE ID = ?";
-        return jdbcTemplate.queryForObject(sql, new CircleMapper(), id);
+        return this.getJdbcTemplate().queryForObject(sql, new CircleMapper(), id);
     }
 
     @Override
     public Integer getCircleCount() {
         String sql = "SELECT COUNT(*) FROM CIRCLE";
-        return jdbcTemplate.queryForObject(sql, Integer.class);
+        return this.getJdbcTemplate().queryForObject(sql, Integer.class);
     }
 
     @Override
     public String getCircleName(int id) {
         String sql = "SELECT NAME FROM CIRCLE WHERE ID=?";
-        return jdbcTemplate.queryForObject(sql, String.class, id);
+        return this.getJdbcTemplate().queryForObject(sql, String.class, id);
     }
 
     @Override
     public List<Circle> getAllCircles() {
         String sql = "SELECT * FROM CIRCLE";
-        return jdbcTemplate.query(sql, new CircleMapper());
+        return this.getJdbcTemplate().query(sql, new CircleMapper());
     }
 
     private static final class CircleMapper implements RowMapper<Circle> {
@@ -78,19 +56,19 @@ public class SpringDataDaoImpl implements CircleDao {
                 new MapSqlParameterSource()
                 .addValue("id", circle.getId())
                 .addValue("name", circle.getName());
-        return namedParameterJdbcTemplate.update(sql, namedParameterSource);
+        return this.getNamedParameterJdbcTemplate().update(sql, namedParameterSource);
     }
 
     @Override
     public int updateCircle(Circle circle) {
         String sql = "UPDATE CIRCLE SET NAME=? WHERE ID=?";
-        return jdbcTemplate.update(sql, circle.getName(), circle.getId());
+        return this.getJdbcTemplate().update(sql, circle.getName(), circle.getId());
     }
 
     @Override
     public int deleteCircle(Circle circle) {
         String sql = "DELETE FROM CIRCLE WHERE ID=?";
-        return jdbcTemplate.update(sql, circle.getId());
-    }   
+        return this.getJdbcTemplate().update(sql, circle.getId());
+    }
     
 }
