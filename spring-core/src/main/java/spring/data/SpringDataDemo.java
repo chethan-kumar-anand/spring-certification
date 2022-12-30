@@ -16,8 +16,17 @@ public class SpringDataDemo {
         
         Circle circle = dao.getCircle(1);
         System.out.println("Circle with id 1: " + circle.getName());
-        System.out.println("Circle count: " + dao.getCircleCount());
+        
         System.out.println("Circle name with id 1: " + dao.getCircleName(1));
-        System.out.println("All circles in table: " + dao.getAllCircles());
+        System.out.println("All circles size: " + dao.getAllCircles().size());
+
+        Circle circle2 = new Circle(3, "Third Circle");
+        int rowsAffected = dao.insertCircle(circle2);
+        System.out.println("Circle count after insert: " + dao.getCircleCount());
+
+        circle2.setName("Updated Circle");
+        rowsAffected = dao.updateCircle(circle2);
+        rowsAffected = dao.deleteCircle(circle2);
+        System.out.println("Circle count after deletion: " + dao.getCircleCount());
     }
 }

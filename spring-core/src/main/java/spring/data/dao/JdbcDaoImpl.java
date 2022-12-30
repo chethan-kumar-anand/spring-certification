@@ -68,4 +68,22 @@ public class JdbcDaoImpl implements CircleDao {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public int insertCircle(Circle circle) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int updateCircle(Circle circle) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int deleteCircle(Circle circle) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

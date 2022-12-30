@@ -67,5 +67,25 @@ public class SpringDataDaoImpl implements CircleDao {
         }
         
     }
+
+    @Override
+    public int insertCircle(Circle circle) {
+        String sql = "INSERT INTO CIRCLE VALUES (?, ?)";
+        return jdbcTemplate.update(sql, circle.getId(), circle.getName()); 
+    }
+
+    @Override
+    public int updateCircle(Circle circle) {
+        String sql = "UPDATE CIRCLE SET NAME=? WHERE ID=?";
+        return jdbcTemplate.update(sql, circle.getName(), circle.getId());
+    }
+
+    @Override
+    public int deleteCircle(Circle circle) {
+        String sql = "DELETE FROM CIRCLE WHERE ID=?";
+        return jdbcTemplate.update(sql, circle.getId());
+    }
+
+    
     
 }

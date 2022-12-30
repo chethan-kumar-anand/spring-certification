@@ -12,4 +12,10 @@ public interface CircleDao {
     String getCircleName(int id);
 
     List<Circle> getAllCircles();
+
+    int insertCircle(Circle circle);
+
+    int updateCircle(Circle circle);
+
+    int deleteCircle(Circle circle);
 }
